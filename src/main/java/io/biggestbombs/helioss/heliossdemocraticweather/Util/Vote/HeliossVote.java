@@ -91,6 +91,7 @@ public abstract class HeliossVote {
                 .findFirst();
 
         possibleOption.ifPresent(heliossVoteOption -> heliossVoteOption.vote(playerId));
+        player.sendMessage(buildVoteMessage(Text.of("Thank you for voting!")));
     }
 
 

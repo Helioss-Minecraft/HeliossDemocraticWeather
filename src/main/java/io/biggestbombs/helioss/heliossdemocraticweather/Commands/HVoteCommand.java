@@ -49,7 +49,7 @@ public class HVoteCommand implements CommandExecutor {
 
         String voteOption = vote.get();
         this.plugin.currentVote.vote(player, voteOption);
-        player.sendMessage(Text.of("Thank you for voting!"));
+
 
         return CommandResult.success();
     }
