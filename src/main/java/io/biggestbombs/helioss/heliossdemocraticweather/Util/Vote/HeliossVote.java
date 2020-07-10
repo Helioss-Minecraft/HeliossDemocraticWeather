@@ -25,7 +25,7 @@ public abstract class HeliossVote {
     private final MessageChannel broadcastChannel;
 
     public Text prefix = Text.of(TextStyles.BOLD, TextColors.DARK_PURPLE, "[Vote] ");
-    public final ArrayList<HeliossVoteOption> options = new ArrayList<>();
+    public ArrayList<HeliossVoteOption> options = new ArrayList<>();
 
     public HeliossVote() {
         this.broadcastChannel = Sponge.getServer().getBroadcastChannel();
@@ -82,7 +82,7 @@ public abstract class HeliossVote {
 
         UUID playerId = player.getUniqueId();
         if(this.options.stream().anyMatch(x -> x.hasVoted(playerId))) {
-            player.sendMessage(buildVoteMessage(Text.of("You have already voted in   this vote!")));
+            player.sendMessage(buildVoteMessage(Text.of("You have already voted in this vote!")));
             return;
         }
 

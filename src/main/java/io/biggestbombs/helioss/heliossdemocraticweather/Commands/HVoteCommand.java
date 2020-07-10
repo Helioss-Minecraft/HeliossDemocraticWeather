@@ -50,7 +50,6 @@ public class HVoteCommand implements CommandExecutor {
         String voteOption = vote.get();
         this.plugin.currentVote.vote(player, voteOption);
 
-
         return CommandResult.success();
     }
 }
