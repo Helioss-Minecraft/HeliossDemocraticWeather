@@ -50,7 +50,7 @@ public class HeliossDemocraticWeather {
 
                         long worldTime = defaultWorld.getWorldTime();
 
-                        if(worldTime > 18000) {
+                        if(worldTime > 14000) {
                             this.currentVote = new TimeOfDayVote(defaultWorld);
                         }
                     }
