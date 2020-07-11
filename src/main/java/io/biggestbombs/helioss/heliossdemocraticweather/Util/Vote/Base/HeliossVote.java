@@ -1,4 +1,4 @@
-package io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote;
+package io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.Base;
 
 import io.biggestbombs.helioss.heliossdemocraticweather.HeliossDemocraticWeather;
 
@@ -24,7 +24,7 @@ public abstract class HeliossVote {
 
     private final MessageChannel broadcastChannel;
 
-    public Text prefix = Text.of(TextStyles.BOLD, TextColors.DARK_PURPLE, "[Vote] ");
+    public Text prefix = Text.of(TextStyles.BOLD, TextColors.DARK_PURPLE, "[Vote]");
     public ArrayList<HeliossVoteOption> options = new ArrayList<>();
 
     public HeliossVote() {
@@ -54,7 +54,8 @@ public abstract class HeliossVote {
                     this.executeVoteOutcome(winner);
 
                     Text.Builder messageBuilder = Text.builder()
-                            .append(prefix);
+                            .append(prefix)
+                            .append(Text.of(" "));
 
                     if (winner != null) {
                         messageBuilder.append(Text.of(String.format("The votes are in! %1$s has won with %2$s votes.", winner.voteName, winner.getVotes())));
@@ -82,7 +83,7 @@ public abstract class HeliossVote {
 
         UUID playerId = player.getUniqueId();
         if(this.options.stream().anyMatch(x -> x.hasVoted(playerId))) {
-            player.sendMessage(buildVoteMessage(Text.of("You have already voted in this vote!")));
+            player.sendMessage(buildVoteMessage(Text.of("You've already voted in this vote!")));
             return;
         }
 
@@ -101,6 +102,7 @@ public abstract class HeliossVote {
     private Text buildVoteMessage(Text message) {
         return Text.builder()
                 .append(prefix)
+                .append(Text.of(" "))
                 .append(message)
                 .build();
     }

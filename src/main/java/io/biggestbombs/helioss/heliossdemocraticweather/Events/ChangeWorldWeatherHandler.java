@@ -1,7 +1,7 @@
 package io.biggestbombs.helioss.heliossdemocraticweather.Events;
 
 import io.biggestbombs.helioss.heliossdemocraticweather.HeliossDemocraticWeather;
-import io.biggestbombs.helioss.heliossdemocraticweather.Util.WeatherVote;
+import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.WeatherVote;
 
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.world.ChangeWorldWeatherEvent;

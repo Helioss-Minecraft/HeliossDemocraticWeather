@@ -1,8 +1,8 @@
-package io.biggestbombs.helioss.heliossdemocraticweather.Util;
+package io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote;
 
 import io.biggestbombs.helioss.heliossdemocraticweather.Util.Enums.WeatherVoteOptions;
-import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.HeliossVote;
-import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.HeliossVoteOption;
+import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.Base.HeliossVote;
+import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.Base.HeliossVoteOption;
 
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
@@ -19,7 +19,7 @@ public class WeatherVote extends HeliossVote {
         super();
 
         this.targetedWorld = targetWorld;
-        this.prefix = Text.of(TextStyles.BOLD, TextColors.DARK_PURPLE, "[WEATHER] ");
+        this.prefix = Text.of(TextStyles.BOLD, TextColors.DARK_PURPLE, "[WEATHER]");
 
         this.addOption(new HeliossVoteOption("Clear Skies", WeatherVoteOptions.CLEAR.getValue()));
         this.addOption(new HeliossVoteOption("Rain", WeatherVoteOptions.RAIN.getValue()));

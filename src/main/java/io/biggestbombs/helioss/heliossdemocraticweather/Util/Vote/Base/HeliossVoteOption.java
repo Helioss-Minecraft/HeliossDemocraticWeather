@@ -1,4 +1,4 @@
-package io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote;
+package io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.Base;
 
 import java.util.ArrayList;
 import java.util.UUID;

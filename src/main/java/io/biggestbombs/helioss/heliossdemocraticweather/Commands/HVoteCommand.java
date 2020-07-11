@@ -1,7 +1,7 @@
 package io.biggestbombs.helioss.heliossdemocraticweather.Commands;
 
 import io.biggestbombs.helioss.heliossdemocraticweather.HeliossDemocraticWeather;
-import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.HeliossVoteOption;
+import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.Base.HeliossVoteOption;
 
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
