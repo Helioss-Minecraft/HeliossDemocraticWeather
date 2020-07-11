@@ -83,7 +83,7 @@ public abstract class HeliossVote {
 
         UUID playerId = player.getUniqueId();
         if(this.options.stream().anyMatch(x -> x.hasVoted(playerId))) {
-            player.sendMessage(buildVoteMessage(Text.of("You've already voted in this vote!")));
+            player.sendMessage(buildVoteMessage(Text.of("You've already voted!")));
             return;
         }
 
