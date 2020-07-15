@@ -1,5 +1,6 @@
 package io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote;
 
+import io.biggestbombs.helioss.heliossdemocraticweather.HeliossDemocraticWeather;
 import io.biggestbombs.helioss.heliossdemocraticweather.Util.Enums.TimeOfDayVoteOptions;
 import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.Base.HeliossVote;
 import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.Base.HeliossVoteOption;
@@ -9,6 +10,8 @@ import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
+
+import java.util.stream.Stream;
 
 public class TimeOfDayVote extends HeliossVote {
 
@@ -41,13 +44,17 @@ public class TimeOfDayVote extends HeliossVote {
         if (voteOption == TimeOfDayVoteOptions.DAY) {
             this.targetedWorld.setWorldTime(1000);
         }
+
+        HeliossDemocraticWeather.plugin_instance.hasSkippedNight.put(this.targetedWorld.getUniqueId(), true);
     }
 
     @Override
     public HeliossVoteOption getMajority() {
 
-        HeliossVoteOption nightOption = this.options.stream()
-                .filter(option -> option.getName().equals("night"))
+        Stream<HeliossVoteOption> optionsStream = this.options.stream();
+
+        HeliossVoteOption nightOption = optionsStream
+                .filter(option -> option.getName().equals(TimeOfDayVoteOptions.NIGHT.getValue()))
                 .findFirst()
                 .orElse(null);
 
@@ -56,6 +63,10 @@ public class TimeOfDayVote extends HeliossVote {
         }
 
         if(nightOption.getVotes() > 0) {
+            return nightOption;
+        }
+
+        if (optionsStream.allMatch(x -> x.getVotes() == 0)) {
             return nightOption;
         }
 
