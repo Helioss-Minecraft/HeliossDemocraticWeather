@@ -17,4 +17,12 @@ public class SpongeUtils {
 
         return ticks;
     }
+
+    public static long determineWorldDays(long ticks) {
+        if (ticks < 24000) {
+            return 0;
+        }
+
+        return ticks / 24000;
+    }
 }

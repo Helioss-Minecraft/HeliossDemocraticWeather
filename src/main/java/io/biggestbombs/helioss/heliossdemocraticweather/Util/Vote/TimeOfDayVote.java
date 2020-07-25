@@ -2,13 +2,13 @@ package io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote;
 
 import io.biggestbombs.helioss.heliossdemocraticweather.HeliossDemocraticWeather;
 import io.biggestbombs.helioss.heliossdemocraticweather.Util.Enums.TimeOfDayVoteOptions;
+import io.biggestbombs.helioss.heliossdemocraticweather.Util.SpongeUtils;
 import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.Base.HeliossVote;
 import io.biggestbombs.helioss.heliossdemocraticweather.Util.Vote.Base.HeliossVoteOption;
 
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyles;
-import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.storage.WorldProperties;
 
 import java.util.stream.Stream;
@@ -42,7 +42,15 @@ public class TimeOfDayVote extends HeliossVote {
         }
 
         if (voteOption == TimeOfDayVoteOptions.DAY) {
-            this.targetedWorld.setWorldTime(1000);
+
+            long currentWorldTime = this.targetedWorld.getWorldTime();
+            long currentDayCount = SpongeUtils.determineWorldDays(currentWorldTime);
+            long nextDay = currentDayCount + 1;
+
+            // Figure out the morning of the next day
+            long nextDayMorning = nextDay * 24000L + 1000L;
+
+            this.targetedWorld.setWorldTime(nextDayMorning);
         }
 
         HeliossDemocraticWeather.plugin_instance.hasSkippedNight.put(this.targetedWorld.getUniqueId(), true);
@@ -51,9 +59,7 @@ public class TimeOfDayVote extends HeliossVote {
     @Override
     public HeliossVoteOption getMajority() {
 
-        Stream<HeliossVoteOption> optionsStream = this.options.stream();
-
-        HeliossVoteOption nightOption = optionsStream
+        HeliossVoteOption nightOption = this.options.stream()
                 .filter(option -> option.getName().equals(TimeOfDayVoteOptions.NIGHT.getValue()))
                 .findFirst()
                 .orElse(null);
@@ -66,7 +72,7 @@ public class TimeOfDayVote extends HeliossVote {
             return nightOption;
         }
 
-        if (optionsStream.allMatch(x -> x.getVotes() == 0)) {
+        if (this.options.stream().allMatch(x -> x.getVotes() == 0)) {
             return nightOption;
         }
 

@@ -56,6 +56,7 @@ public class HeliossDemocraticWeather {
 
                         long worldTime = defaultWorld.getWorldTime();
                         UUID worldId = defaultWorld.getUniqueId();
+
                         long currentDayTime = SpongeUtils.normalizeWorldTime(worldTime);
                         boolean hasSkippedNight = this.hasSkippedNight.get(worldId);
 
