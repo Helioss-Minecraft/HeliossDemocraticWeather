@@ -19,7 +19,7 @@ public class ChangeWorldWeatherHandler {
     @Listener
     public void onChangeWorldWeather(ChangeWorldWeatherEvent event) {
 
-        if(event.getWeather() != Weathers.RAIN) {
+        if(event.getWeather() == Weathers.CLEAR) {
             return;
         }
 
